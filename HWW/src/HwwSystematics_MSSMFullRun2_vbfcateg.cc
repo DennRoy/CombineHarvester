@@ -505,6 +505,9 @@ void AddMSSMFullRun2Systematics(CombineHarvester & cb, bool highmass, bool DNNdi
       maxbin=16;
     }
   }
+  for(auto y : runyears){
+  for(auto y2 : std::vector<std::string> {"ggh", "vbf"}){
+  for(auto y3 : std::vector<std::string> {"em", "ee", "mm"}){
   for(int ibin=1; ibin<=maxbin; ibin++){
     /*for(auto smass : sigmasses){
       std::cout << "ibin"+mssmorindep+"GGH_"+smass+model+"_"+std::to_string(ibin)+"_stat" << std::endl;
@@ -529,23 +532,26 @@ void AddMSSMFullRun2Systematics(CombineHarvester & cb, bool highmass, bool DNNdi
     }*/
      //std::cout << "ibin"+mssmorindep+"GGH"+model+"_"+std::to_string(ibin)+"_stat" << std::endl;
 
-     cb.cp().process(JoinStr({ggH, ggHSBI})).attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
-       "ibinGGH"+model+"_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+     cb.cp().process(JoinStr({ggH, ggHSBI})).attr({y2},"njet").attr({y3},"decay").attr({"2k1"+y},"year").attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
+       "CMS_hww_"+y3+"_"+y2+"_201"+y+"_correlbin_GGH"+model+"_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
 
-     cb.cp().process(JoinStr({{"ggWW"}, ggHSBI})).attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
-       "ibinggWW_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+     cb.cp().process(JoinStr({{"ggWW"}, ggHSBI})).attr({y2},"njet").attr({y3},"decay").attr({"2k1"+y},"year").attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
+       "CMS_hww_"+y3+"_"+y2+"_201"+y+"_correlbin_ggWW_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
 
-     cb.cp().process(JoinStr({{"ggH_hww"}, ggHSBI})).attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
-       "ibinggH_hww_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+     cb.cp().process(JoinStr({{"ggH_hww"}, ggHSBI})).attr({y2},"njet").attr({y3},"decay").attr({"2k1"+y},"year").attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
+       "CMS_hww_"+y3+"_"+y2+"_201"+y+"_correlbin_ggH_hww_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
 
-     cb.cp().process(JoinStr({qqH, qqHSBI})).attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
-       "ibinQQH"+model+"_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+     cb.cp().process(JoinStr({qqH, qqHSBI})).attr({y2},"njet").attr({y3},"decay").attr({"2k1"+y},"year").attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
+       "CMS_hww_"+y3+"_"+y2+"_201"+y+"_correlbin_QQH"+model+"_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
 
-     cb.cp().process(JoinStr({{"qqWWqq"}, qqHSBI})).attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
-       "ibinqqWWqq_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+     cb.cp().process(JoinStr({{"qqWWqq"}, qqHSBI})).attr({y2},"njet").attr({y3},"decay").attr({"2k1"+y},"year").attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
+       "CMS_hww_"+y3+"_"+y2+"_201"+y+"_correlbin_qqWWqq_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
 
-     cb.cp().process(JoinStr({{"qqH_hww"}, qqHSBI})).attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
-       "ibinqqH_hww_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+     cb.cp().process(JoinStr({{"qqH_hww"}, qqHSBI})).attr({y2},"njet").attr({y3},"decay").attr({"2k1"+y},"year").attr({"dilep"},"analysis").attr({"False"},"CR").AddSyst(cb,
+       "CMS_hww_"+y3+"_"+y2+"_201"+y+"_correlbin_qqH_hww_"+std::to_string(ibin)+"_stat", "shape", SystMap<>::init(1.00));
+  }
+  }
+  }
   }
 
 
